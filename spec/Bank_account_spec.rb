@@ -22,15 +22,11 @@ describe Bank_account do
 
     let!(:time) {Time.new(2002, 10, 31)}
 
-    it "has a timestamp for the deposit" do
+    it "has a datestamp for the deposit" do
       @account.deposit(10, time)
-      expect(@account.date).to include({"credit"=>[time, "£10"]})
+      expect(@account.statement.transactions[1]).to include("02/10/31|| £10 ||    || £10\n")
     end
 
-    it "can see that the transaction is a deposit" do
-      @account.deposit(10, time)
-      expect(@account.date).to include("credit")
-    end
   end
 
   context("withdraw:") do
@@ -46,11 +42,9 @@ describe Bank_account do
       expect(@account.balance).to eq(50)
     end
 
-    it "has a timestamp of the withdrawal" do
-      expect(@account.date).to include("debit"=>[time, "£50"])
+    it "has a timestamp of the withdrawal in table form" do
+      expect(@account.statement.transactions[1]).to include("02/10/31||    || £50 || £50\n")
     end
-    it "can see the type of transaction is a withdrawal" do
-      expect(@account.date).to include("debit")
-    end
+
   end
 end

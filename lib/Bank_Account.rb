@@ -1,19 +1,23 @@
+require "./lib/Bank_statement"
+
 class Bank_account
-  attr_reader :balance, :date
+  attr_reader :balance, :date, :statement
   def initialize(balance = 0)
     @balance = balance
-    @date = {}
+    @statement = Bank_statement.new
   end
 
   def deposit(amount, time = Time.new(2017, 1, 23))
+    @amount = amount
     @balance += amount
-    type = "credit"
-    @date.store(type, [time, "£#{amount}"])
+    @time = time.strftime "%y/%m/%d"
+    @statement.transactions.push("#{@time}|| £#{@amount} ||    || £#{@balance}\n")
   end
 
   def withdraw(amount, time = Time.new(2017, 1, 23))
+    @amount = amount
     @balance -= amount
-    type = "debit"
-    @date.store(type, [time, "£#{amount}"])
+    @time = time.strftime "%y/%m/%d"
+    @statement.transactions.push("#{@time}||    || £#{@amount} || £#{@balance}\n")
   end
 end
