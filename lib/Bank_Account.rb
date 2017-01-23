@@ -11,7 +11,9 @@ class Bank_account
     @date.store(type, [time, "£#{amount}"])
   end
 
-  def withdraw(amount)
+  def withdraw(amount, time = Time.new(2017, 1, 23))
     @balance -= amount
+    type = "withdrawal"
+    @date.store(type, [time, "£#{amount}"])
   end
 end

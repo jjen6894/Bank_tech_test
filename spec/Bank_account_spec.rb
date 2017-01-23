@@ -35,14 +35,22 @@ describe Bank_account do
 
   context("withdraw:") do
 
+    let!(:time) {Time.new(2002, 10, 31)}
+
     before do
       @account = Bank_account.new(100)
+      @account.withdraw(50, time)
     end
 
     it "can withdraw from the account" do
-      @account.withdraw(50)
       expect(@account.balance).to eq(50)
     end
 
+    it "has a timestamp of the withdrawal" do
+      expect(@account.date).to include("withdrawal"=>[time, "£50"])
+    end
+    it "can see the type of transaction is a withdrawal" do
+      expect(@account.date).to include("withdrawal")
+    end
   end
 end
