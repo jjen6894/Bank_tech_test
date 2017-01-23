@@ -24,12 +24,12 @@ describe Bank_account do
 
     it "has a timestamp for the deposit" do
       @account.deposit(10, time)
-      expect(@account.date).to include({"deposit"=>[time, "£10"]})
+      expect(@account.date).to include({"credit"=>[time, "£10"]})
     end
 
     it "can see that the transaction is a deposit" do
       @account.deposit(10, time)
-      expect(@account.date).to include("deposit")
+      expect(@account.date).to include("credit")
     end
   end
 
@@ -47,10 +47,10 @@ describe Bank_account do
     end
 
     it "has a timestamp of the withdrawal" do
-      expect(@account.date).to include("withdrawal"=>[time, "£50"])
+      expect(@account.date).to include("debit"=>[time, "£50"])
     end
     it "can see the type of transaction is a withdrawal" do
-      expect(@account.date).to include("withdrawal")
+      expect(@account.date).to include("debit")
     end
   end
 end

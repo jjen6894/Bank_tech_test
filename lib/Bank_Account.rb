@@ -7,13 +7,13 @@ class Bank_account
 
   def deposit(amount, time = Time.new(2017, 1, 23))
     @balance += amount
-    type = "deposit"
+    type = "credit"
     @date.store(type, [time, "£#{amount}"])
   end
 
   def withdraw(amount, time = Time.new(2017, 1, 23))
     @balance -= amount
-    type = "withdrawal"
+    type = "debit"
     @date.store(type, [time, "£#{amount}"])
   end
 end
