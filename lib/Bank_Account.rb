@@ -9,6 +9,9 @@ class Bank_account
     @balance += amount
     type = "deposit"
     @date.store(type, [time, "£#{amount}"])
+  end
 
+  def withdraw(amount)
+    @balance -= amount
   end
 end
